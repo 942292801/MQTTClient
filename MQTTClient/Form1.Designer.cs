@@ -32,52 +32,55 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
-            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
+            this.btnConnet = new DevComponents.DotNetBar.ButtonX();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new DevComponents.DotNetBar.ButtonX();
-            this.textBoxX7 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtClientID = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtIP = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtAlive = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtConnetName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtPort = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbClean = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxX5 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX6 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtUserName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX8 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtSubTopic = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.tokenEditor1 = new DevComponents.DotNetBar.Controls.TokenEditor();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbSub1 = new System.Windows.Forms.RadioButton();
+            this.btnSubscribe = new DevComponents.DotNetBar.ButtonX();
+            this.rbSub2 = new System.Windows.Forms.RadioButton();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbSub0 = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.listBoxLog = new DevComponents.DotNetBar.ListBoxAdv();
+            this.rtbRcv = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.richTextBoxEx1 = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+            this.rtbPush = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
+            this.btnSend = new DevComponents.DotNetBar.ButtonX();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.textBoxX9 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtPusTopic = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.rbPus1 = new System.Windows.Forms.RadioButton();
+            this.rbPus2 = new System.Windows.Forms.RadioButton();
             this.labelX10 = new DevComponents.DotNetBar.LabelX();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.rbPus0 = new System.Windows.Forms.RadioButton();
+            this.btnSendFile = new DevComponents.DotNetBar.ButtonX();
             this.expandablePanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,6 +88,7 @@
             this.panel10.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -104,7 +108,7 @@
             this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel1.CollapseDirection = DevComponents.DotNetBar.eCollapseDirection.RightToLeft;
             this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.expandablePanel1.Controls.Add(this.buttonX2);
+            this.expandablePanel1.Controls.Add(this.btnConnet);
             this.expandablePanel1.Controls.Add(this.groupBox1);
             this.expandablePanel1.Controls.Add(this.groupBox2);
             this.expandablePanel1.DisabledBackColor = System.Drawing.Color.Empty;
@@ -126,32 +130,33 @@
             this.expandablePanel1.TitleStyle.GradientAngle = 90;
             this.expandablePanel1.TitleText = "Connections";
             // 
-            // buttonX2
+            // btnConnet
             // 
-            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(124, 508);
-            this.buttonX2.Name = "buttonX2";
-            this.buttonX2.Size = new System.Drawing.Size(88, 24);
-            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX2.TabIndex = 10;
-            this.buttonX2.Text = "Connect";
+            this.btnConnet.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnConnet.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnConnet.Location = new System.Drawing.Point(124, 508);
+            this.btnConnet.Name = "btnConnet";
+            this.btnConnet.Size = new System.Drawing.Size(88, 24);
+            this.btnConnet.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnConnet.TabIndex = 10;
+            this.btnConnet.Text = "Connect";
+            this.btnConnet.Click += new System.EventHandler(this.BtnConnet_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.btnRefresh);
-            this.groupBox1.Controls.Add(this.textBoxX7);
+            this.groupBox1.Controls.Add(this.txtClientID);
             this.groupBox1.Controls.Add(this.labelX1);
             this.groupBox1.Controls.Add(this.labelX4);
-            this.groupBox1.Controls.Add(this.textBoxX2);
+            this.groupBox1.Controls.Add(this.txtIP);
             this.groupBox1.Controls.Add(this.labelX7);
             this.groupBox1.Controls.Add(this.labelX3);
-            this.groupBox1.Controls.Add(this.textBoxX4);
-            this.groupBox1.Controls.Add(this.textBoxX1);
-            this.groupBox1.Controls.Add(this.textBoxX3);
+            this.groupBox1.Controls.Add(this.txtAlive);
+            this.groupBox1.Controls.Add(this.txtConnetName);
+            this.groupBox1.Controls.Add(this.txtPort);
             this.groupBox1.Controls.Add(this.labelX2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.cbClean);
             this.groupBox1.Location = new System.Drawing.Point(12, 39);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(214, 319);
@@ -177,23 +182,24 @@
             this.btnRefresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnRefresh.TabIndex = 71;
             this.btnRefresh.Tooltip = "random ID";
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
-            // textBoxX7
+            // txtClientID
             // 
-            this.textBoxX7.BackColor = System.Drawing.Color.White;
+            this.txtClientID.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX7.Border.Class = "TextBoxBorder";
-            this.textBoxX7.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX7.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX7.Enabled = false;
-            this.textBoxX7.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX7.Location = new System.Drawing.Point(7, 190);
-            this.textBoxX7.Name = "textBoxX7";
-            this.textBoxX7.PreventEnterBeep = true;
-            this.textBoxX7.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX7.TabIndex = 14;
+            this.txtClientID.Border.Class = "TextBoxBorder";
+            this.txtClientID.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtClientID.DisabledBackColor = System.Drawing.Color.White;
+            this.txtClientID.Enabled = false;
+            this.txtClientID.ForeColor = System.Drawing.Color.Black;
+            this.txtClientID.Location = new System.Drawing.Point(7, 190);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.PreventEnterBeep = true;
+            this.txtClientID.Size = new System.Drawing.Size(175, 21);
+            this.txtClientID.TabIndex = 14;
             // 
             // labelX1
             // 
@@ -225,21 +231,23 @@
             this.labelX4.TabIndex = 11;
             this.labelX4.Text = "Keep  Alive(seconds)";
             // 
-            // textBoxX2
+            // txtIP
             // 
-            this.textBoxX2.BackColor = System.Drawing.Color.White;
+            this.txtIP.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX2.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX2.Location = new System.Drawing.Point(7, 92);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.PreventEnterBeep = true;
-            this.textBoxX2.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX2.TabIndex = 7;
+            this.txtIP.Border.Class = "TextBoxBorder";
+            this.txtIP.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtIP.DisabledBackColor = System.Drawing.Color.White;
+            this.txtIP.ForeColor = System.Drawing.Color.Black;
+            this.txtIP.Location = new System.Drawing.Point(7, 92);
+            this.txtIP.Name = "txtIP";
+            this.txtIP.PreventEnterBeep = true;
+            this.txtIP.Size = new System.Drawing.Size(175, 21);
+            this.txtIP.TabIndex = 7;
+            this.txtIP.TextChanged += new System.EventHandler(this.TxtIP_TextChanged);
+            this.txtIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIP_KeyPress);
             // 
             // labelX7
             // 
@@ -271,53 +279,58 @@
             this.labelX3.TabIndex = 8;
             this.labelX3.Text = "Port";
             // 
-            // textBoxX4
+            // txtAlive
             // 
-            this.textBoxX4.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.textBoxX4.Border.Class = "TextBoxBorder";
-            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX4.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX4.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX4.Location = new System.Drawing.Point(7, 243);
-            this.textBoxX4.Name = "textBoxX4";
-            this.textBoxX4.PreventEnterBeep = true;
-            this.textBoxX4.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX4.TabIndex = 12;
-            // 
-            // textBoxX1
-            // 
-            this.textBoxX1.BackColor = System.Drawing.Color.White;
+            this.txtAlive.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX1.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX1.Location = new System.Drawing.Point(7, 43);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX1.TabIndex = 5;
+            this.txtAlive.Border.Class = "TextBoxBorder";
+            this.txtAlive.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtAlive.DisabledBackColor = System.Drawing.Color.White;
+            this.txtAlive.ForeColor = System.Drawing.Color.Black;
+            this.txtAlive.Location = new System.Drawing.Point(7, 243);
+            this.txtAlive.Name = "txtAlive";
+            this.txtAlive.PreventEnterBeep = true;
+            this.txtAlive.Size = new System.Drawing.Size(175, 21);
+            this.txtAlive.TabIndex = 12;
+            this.txtAlive.TextChanged += new System.EventHandler(this.TxtAlive_TextChanged);
+            this.txtAlive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPort_KeyPress);
             // 
-            // textBoxX3
+            // txtConnetName
             // 
-            this.textBoxX3.BackColor = System.Drawing.Color.White;
+            this.txtConnetName.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX3.Border.Class = "TextBoxBorder";
-            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX3.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX3.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX3.Location = new System.Drawing.Point(7, 141);
-            this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.PreventEnterBeep = true;
-            this.textBoxX3.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX3.TabIndex = 9;
+            this.txtConnetName.Border.Class = "TextBoxBorder";
+            this.txtConnetName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtConnetName.DisabledBackColor = System.Drawing.Color.White;
+            this.txtConnetName.ForeColor = System.Drawing.Color.Black;
+            this.txtConnetName.Location = new System.Drawing.Point(7, 43);
+            this.txtConnetName.Name = "txtConnetName";
+            this.txtConnetName.PreventEnterBeep = true;
+            this.txtConnetName.Size = new System.Drawing.Size(175, 21);
+            this.txtConnetName.TabIndex = 5;
+            this.txtConnetName.TextChanged += new System.EventHandler(this.TxtConnetName_TextChanged);
+            // 
+            // txtPort
+            // 
+            this.txtPort.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.txtPort.Border.Class = "TextBoxBorder";
+            this.txtPort.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtPort.DisabledBackColor = System.Drawing.Color.White;
+            this.txtPort.ForeColor = System.Drawing.Color.Black;
+            this.txtPort.Location = new System.Drawing.Point(7, 141);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.PreventEnterBeep = true;
+            this.txtPort.Size = new System.Drawing.Size(175, 21);
+            this.txtPort.TabIndex = 9;
+            this.txtPort.TextChanged += new System.EventHandler(this.TxtPort_TextChanged);
+            this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPort_KeyPress);
             // 
             // labelX2
             // 
@@ -334,22 +347,23 @@
             this.labelX2.TabIndex = 6;
             this.labelX2.Text = "IP";
             // 
-            // checkBox1
+            // cbClean
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 279);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(102, 16);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Clean Session";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbClean.AutoSize = true;
+            this.cbClean.Location = new System.Drawing.Point(10, 279);
+            this.cbClean.Name = "cbClean";
+            this.cbClean.Size = new System.Drawing.Size(102, 16);
+            this.cbClean.TabIndex = 10;
+            this.cbClean.Text = "Clean Session";
+            this.cbClean.UseVisualStyleBackColor = true;
+            this.cbClean.CheckedChanged += new System.EventHandler(this.CbClear_CheckedChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.textBoxX5);
+            this.groupBox2.Controls.Add(this.txtPassword);
             this.groupBox2.Controls.Add(this.labelX5);
-            this.groupBox2.Controls.Add(this.textBoxX6);
+            this.groupBox2.Controls.Add(this.txtUserName);
             this.groupBox2.Controls.Add(this.labelX6);
             this.groupBox2.Location = new System.Drawing.Point(12, 364);
             this.groupBox2.Name = "groupBox2";
@@ -358,21 +372,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Creadentials";
             // 
-            // textBoxX5
+            // txtPassword
             // 
-            this.textBoxX5.BackColor = System.Drawing.Color.White;
+            this.txtPassword.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX5.Border.Class = "TextBoxBorder";
-            this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX5.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX5.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX5.Location = new System.Drawing.Point(7, 91);
-            this.textBoxX5.Name = "textBoxX5";
-            this.textBoxX5.PreventEnterBeep = true;
-            this.textBoxX5.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX5.TabIndex = 13;
+            this.txtPassword.Border.Class = "TextBoxBorder";
+            this.txtPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtPassword.DisabledBackColor = System.Drawing.Color.White;
+            this.txtPassword.ForeColor = System.Drawing.Color.Black;
+            this.txtPassword.Location = new System.Drawing.Point(7, 91);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PreventEnterBeep = true;
+            this.txtPassword.Size = new System.Drawing.Size(175, 21);
+            this.txtPassword.TabIndex = 13;
+            this.txtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
             // labelX5
             // 
@@ -389,21 +404,22 @@
             this.labelX5.TabIndex = 12;
             this.labelX5.Text = "Password";
             // 
-            // textBoxX6
+            // txtUserName
             // 
-            this.textBoxX6.BackColor = System.Drawing.Color.White;
+            this.txtUserName.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX6.Border.Class = "TextBoxBorder";
-            this.textBoxX6.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX6.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX6.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX6.Location = new System.Drawing.Point(7, 40);
-            this.textBoxX6.Name = "textBoxX6";
-            this.textBoxX6.PreventEnterBeep = true;
-            this.textBoxX6.Size = new System.Drawing.Size(175, 21);
-            this.textBoxX6.TabIndex = 11;
+            this.txtUserName.Border.Class = "TextBoxBorder";
+            this.txtUserName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtUserName.DisabledBackColor = System.Drawing.Color.White;
+            this.txtUserName.ForeColor = System.Drawing.Color.Black;
+            this.txtUserName.Location = new System.Drawing.Point(7, 40);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.PreventEnterBeep = true;
+            this.txtUserName.Size = new System.Drawing.Size(175, 21);
+            this.txtUserName.TabIndex = 11;
+            this.txtUserName.TextChanged += new System.EventHandler(this.TxtUserName_TextChanged);
             // 
             // labelX6
             // 
@@ -435,21 +451,21 @@
             this.labelX8.TabIndex = 6;
             this.labelX8.Text = "Topic";
             // 
-            // textBoxX8
+            // txtSubTopic
             // 
-            this.textBoxX8.BackColor = System.Drawing.Color.White;
+            this.txtSubTopic.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX8.Border.Class = "TextBoxBorder";
-            this.textBoxX8.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX8.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX8.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX8.Location = new System.Drawing.Point(13, 61);
-            this.textBoxX8.Name = "textBoxX8";
-            this.textBoxX8.PreventEnterBeep = true;
-            this.textBoxX8.Size = new System.Drawing.Size(192, 21);
-            this.textBoxX8.TabIndex = 7;
+            this.txtSubTopic.Border.Class = "TextBoxBorder";
+            this.txtSubTopic.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSubTopic.DisabledBackColor = System.Drawing.Color.White;
+            this.txtSubTopic.ForeColor = System.Drawing.Color.Black;
+            this.txtSubTopic.Location = new System.Drawing.Point(13, 61);
+            this.txtSubTopic.Name = "txtSubTopic";
+            this.txtSubTopic.PreventEnterBeep = true;
+            this.txtSubTopic.Size = new System.Drawing.Size(192, 21);
+            this.txtSubTopic.TabIndex = 7;
             // 
             // expandablePanel2
             // 
@@ -457,13 +473,13 @@
             this.expandablePanel2.CollapseDirection = DevComponents.DotNetBar.eCollapseDirection.LeftToRight;
             this.expandablePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.expandablePanel2.Controls.Add(this.panel10);
-            this.expandablePanel2.Controls.Add(this.radioButton3);
-            this.expandablePanel2.Controls.Add(this.buttonX1);
-            this.expandablePanel2.Controls.Add(this.radioButton2);
+            this.expandablePanel2.Controls.Add(this.rbSub1);
+            this.expandablePanel2.Controls.Add(this.btnSubscribe);
+            this.expandablePanel2.Controls.Add(this.rbSub2);
             this.expandablePanel2.Controls.Add(this.labelX9);
-            this.expandablePanel2.Controls.Add(this.radioButton1);
+            this.expandablePanel2.Controls.Add(this.rbSub0);
             this.expandablePanel2.Controls.Add(this.labelX8);
-            this.expandablePanel2.Controls.Add(this.textBoxX8);
+            this.expandablePanel2.Controls.Add(this.txtSubTopic);
             this.expandablePanel2.DisabledBackColor = System.Drawing.Color.Empty;
             this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.expandablePanel2.Location = new System.Drawing.Point(638, 0);
@@ -500,52 +516,56 @@
             // 
             this.tokenEditor1.BackgroundStyle.Class = "DateTimeInputBackground";
             this.tokenEditor1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tokenEditor1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tokenEditor1.EnablePopupResize = false;
-            this.tokenEditor1.Location = new System.Drawing.Point(19, 35);
+            this.tokenEditor1.Location = new System.Drawing.Point(0, 0);
             this.tokenEditor1.Name = "tokenEditor1";
             this.tokenEditor1.Separators.Add(";");
             this.tokenEditor1.Separators.Add(",");
-            this.tokenEditor1.Size = new System.Drawing.Size(167, 22);
+            this.tokenEditor1.Size = new System.Drawing.Size(217, 22);
             this.tokenEditor1.TabIndex = 0;
             this.tokenEditor1.WatermarkImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.tokenEditor1.RemovingToken += new DevComponents.DotNetBar.Controls.RemovingTokenEventHandler(this.TokenEditor1_RemovingToken_1);
             // 
-            // radioButton3
+            // rbSub1
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.Location = new System.Drawing.Point(104, 95);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(29, 16);
-            this.radioButton3.TabIndex = 11;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "1";
-            this.radioButton3.UseVisualStyleBackColor = false;
+            this.rbSub1.AutoSize = true;
+            this.rbSub1.BackColor = System.Drawing.Color.Transparent;
+            this.rbSub1.Location = new System.Drawing.Point(104, 95);
+            this.rbSub1.Margin = new System.Windows.Forms.Padding(5);
+            this.rbSub1.Name = "rbSub1";
+            this.rbSub1.Size = new System.Drawing.Size(29, 16);
+            this.rbSub1.TabIndex = 11;
+            this.rbSub1.TabStop = true;
+            this.rbSub1.Text = "1";
+            this.rbSub1.UseVisualStyleBackColor = false;
+            this.rbSub1.CheckedChanged += new System.EventHandler(this.RbSub1_CheckedChanged);
             // 
-            // buttonX1
+            // btnSubscribe
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(78, 136);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(67, 24);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 12;
-            this.buttonX1.Text = "Subscribe";
+            this.btnSubscribe.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSubscribe.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSubscribe.Location = new System.Drawing.Point(78, 136);
+            this.btnSubscribe.Name = "btnSubscribe";
+            this.btnSubscribe.Size = new System.Drawing.Size(67, 24);
+            this.btnSubscribe.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSubscribe.TabIndex = 12;
+            this.btnSubscribe.Text = "Subscribe";
+            this.btnSubscribe.Click += new System.EventHandler(this.BtnSubscribe_Click);
             // 
-            // radioButton2
+            // rbSub2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton2.Location = new System.Drawing.Point(143, 96);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(29, 16);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "2";
-            this.radioButton2.UseVisualStyleBackColor = false;
+            this.rbSub2.AutoSize = true;
+            this.rbSub2.BackColor = System.Drawing.Color.Transparent;
+            this.rbSub2.Location = new System.Drawing.Point(143, 96);
+            this.rbSub2.Margin = new System.Windows.Forms.Padding(5);
+            this.rbSub2.Name = "rbSub2";
+            this.rbSub2.Size = new System.Drawing.Size(29, 16);
+            this.rbSub2.TabIndex = 10;
+            this.rbSub2.TabStop = true;
+            this.rbSub2.Text = "2";
+            this.rbSub2.UseVisualStyleBackColor = false;
+            this.rbSub2.CheckedChanged += new System.EventHandler(this.RbSub2_CheckedChanged);
             // 
             // labelX9
             // 
@@ -562,18 +582,19 @@
             this.labelX9.TabIndex = 9;
             this.labelX9.Text = "Qos:";
             // 
-            // radioButton1
+            // rbSub0
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton1.Location = new System.Drawing.Point(65, 95);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(29, 16);
-            this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "0";
-            this.radioButton1.UseVisualStyleBackColor = false;
+            this.rbSub0.AutoSize = true;
+            this.rbSub0.BackColor = System.Drawing.Color.Transparent;
+            this.rbSub0.Location = new System.Drawing.Point(65, 95);
+            this.rbSub0.Margin = new System.Windows.Forms.Padding(5);
+            this.rbSub0.Name = "rbSub0";
+            this.rbSub0.Size = new System.Drawing.Size(29, 16);
+            this.rbSub0.TabIndex = 8;
+            this.rbSub0.TabStop = true;
+            this.rbSub0.Text = "0";
+            this.rbSub0.UseVisualStyleBackColor = false;
+            this.rbSub0.CheckedChanged += new System.EventHandler(this.RbSub0_CheckedChanged);
             // 
             // panel1
             // 
@@ -589,29 +610,43 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.listBoxLog);
+            this.panel3.Controls.Add(this.rtbRcv);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(638, 406);
             this.panel3.TabIndex = 13;
             // 
-            // listBoxLog
-            // 
-            this.listBoxLog.AutoScroll = true;
+            // rtbRcv
             // 
             // 
             // 
-            this.listBoxLog.BackgroundStyle.Class = "ListBoxAdv";
-            this.listBoxLog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.listBoxLog.CheckStateMember = null;
-            this.listBoxLog.ContainerControlProcessDialogKey = true;
-            this.listBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxLog.DragDropSupport = true;
-            this.listBoxLog.Location = new System.Drawing.Point(0, 0);
-            this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(638, 406);
-            this.listBoxLog.TabIndex = 10;
+            // 
+            this.rtbRcv.BackgroundStyle.Class = "RichTextBoxBorder";
+            this.rtbRcv.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.rtbRcv.ContextMenuStrip = this.contextMenuStrip1;
+            this.rtbRcv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbRcv.Location = new System.Drawing.Point(0, 0);
+            this.rtbRcv.Name = "rtbRcv";
+            this.rtbRcv.Rtf = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
+    "134 \\\'cb\\\'ce\\\'cc\\\'e5;}}\r\n{\\*\\generator Msftedit 5.41.21.2510;}\\viewkind4\\uc1\\par" +
+    "d\\lang2052\\f0\\fs18\\par\r\n}\r\n";
+            this.rtbRcv.Size = new System.Drawing.Size(638, 406);
+            this.rtbRcv.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.清空ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
+            // 
+            // 清空ToolStripMenuItem
+            // 
+            this.清空ToolStripMenuItem.Name = "清空ToolStripMenuItem";
+            this.清空ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.清空ToolStripMenuItem.Text = "清空";
+            this.清空ToolStripMenuItem.Click += new System.EventHandler(this.清空ToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -635,50 +670,51 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.richTextBoxEx1);
+            this.panel7.Controls.Add(this.rtbPush);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(543, 113);
             this.panel7.TabIndex = 1;
             // 
-            // richTextBoxEx1
+            // rtbPush
             // 
             // 
             // 
             // 
-            this.richTextBoxEx1.BackgroundStyle.Class = "RichTextBoxBorder";
-            this.richTextBoxEx1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.richTextBoxEx1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxEx1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBoxEx1.Name = "richTextBoxEx1";
-            this.richTextBoxEx1.Rtf = "{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0\\fnil\\fcharset134 \\\'cb\\\'ce\\\'cc\\\'e5;}}\r\n{\\*\\generato" +
-    "r Msftedit 5.41.21.2510;}\\viewkind4\\uc1\\pard\\lang2052\\f0\\fs18 richTextBoxEx1\\par" +
-    "\r\n}\r\n";
-            this.richTextBoxEx1.Size = new System.Drawing.Size(543, 113);
-            this.richTextBoxEx1.TabIndex = 0;
-            this.richTextBoxEx1.Text = "richTextBoxEx1";
+            this.rtbPush.BackgroundStyle.Class = "RichTextBoxBorder";
+            this.rtbPush.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.rtbPush.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbPush.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtbPush.Location = new System.Drawing.Point(0, 0);
+            this.rtbPush.Name = "rtbPush";
+            this.rtbPush.Rtf = "{\\rtf1\\ansi\\ansicpg936\\deff0\\deflang1033\\deflangfe2052{\\fonttbl{\\f0\\fnil\\fcharset" +
+    "134 \\\'cb\\\'ce\\\'cc\\\'e5;}}\r\n{\\*\\generator Msftedit 5.41.21.2510;}\\viewkind4\\uc1\\par" +
+    "d\\lang2052\\f0\\fs18\\par\r\n}\r\n";
+            this.rtbPush.Size = new System.Drawing.Size(543, 113);
+            this.rtbPush.TabIndex = 0;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.buttonX3);
+            this.panel6.Controls.Add(this.btnSend);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(543, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(95, 113);
             this.panel6.TabIndex = 0;
             // 
-            // buttonX3
+            // btnSend
             // 
-            this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonX3.Location = new System.Drawing.Point(0, 0);
-            this.buttonX3.Name = "buttonX3";
-            this.buttonX3.Size = new System.Drawing.Size(95, 113);
-            this.buttonX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX3.TabIndex = 13;
-            this.buttonX3.Text = "Send";
+            this.btnSend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSend.Location = new System.Drawing.Point(0, 0);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(95, 113);
+            this.btnSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSend.TabIndex = 13;
+            this.btnSend.Text = "Send";
+            this.btnSend.Click += new System.EventHandler(this.BtnSend_Click);
             // 
             // panel4
             // 
@@ -692,67 +728,71 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.textBoxX9);
+            this.panel9.Controls.Add(this.txtPusTopic);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(454, 21);
+            this.panel9.Size = new System.Drawing.Size(438, 21);
             this.panel9.TabIndex = 1;
             // 
-            // textBoxX9
+            // txtPusTopic
             // 
-            this.textBoxX9.BackColor = System.Drawing.Color.White;
+            this.txtPusTopic.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX9.Border.Class = "TextBoxBorder";
-            this.textBoxX9.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX9.DisabledBackColor = System.Drawing.Color.White;
-            this.textBoxX9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxX9.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX9.Location = new System.Drawing.Point(0, 0);
-            this.textBoxX9.Name = "textBoxX9";
-            this.textBoxX9.PreventEnterBeep = true;
-            this.textBoxX9.Size = new System.Drawing.Size(454, 21);
-            this.textBoxX9.TabIndex = 0;
+            this.txtPusTopic.Border.Class = "TextBoxBorder";
+            this.txtPusTopic.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtPusTopic.DisabledBackColor = System.Drawing.Color.White;
+            this.txtPusTopic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPusTopic.ForeColor = System.Drawing.Color.Black;
+            this.txtPusTopic.Location = new System.Drawing.Point(0, 0);
+            this.txtPusTopic.Name = "txtPusTopic";
+            this.txtPusTopic.PreventEnterBeep = true;
+            this.txtPusTopic.Size = new System.Drawing.Size(438, 21);
+            this.txtPusTopic.TabIndex = 0;
+            this.txtPusTopic.Text = "Topictest/";
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.radioButton4);
-            this.panel8.Controls.Add(this.radioButton5);
+            this.panel8.Controls.Add(this.btnSendFile);
+            this.panel8.Controls.Add(this.rbPus1);
+            this.panel8.Controls.Add(this.rbPus2);
             this.panel8.Controls.Add(this.labelX10);
-            this.panel8.Controls.Add(this.radioButton6);
+            this.panel8.Controls.Add(this.rbPus0);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(454, 0);
+            this.panel8.Location = new System.Drawing.Point(438, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(184, 21);
+            this.panel8.Size = new System.Drawing.Size(200, 21);
             this.panel8.TabIndex = 0;
             // 
-            // radioButton4
+            // rbPus1
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton4.Location = new System.Drawing.Point(101, 2);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(29, 16);
-            this.radioButton4.TabIndex = 15;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "1";
-            this.radioButton4.UseVisualStyleBackColor = false;
+            this.rbPus1.AutoSize = true;
+            this.rbPus1.BackColor = System.Drawing.Color.Transparent;
+            this.rbPus1.Location = new System.Drawing.Point(119, 2);
+            this.rbPus1.Margin = new System.Windows.Forms.Padding(5);
+            this.rbPus1.Name = "rbPus1";
+            this.rbPus1.Size = new System.Drawing.Size(29, 16);
+            this.rbPus1.TabIndex = 15;
+            this.rbPus1.TabStop = true;
+            this.rbPus1.Text = "1";
+            this.rbPus1.UseVisualStyleBackColor = false;
+            this.rbPus1.CheckedChanged += new System.EventHandler(this.RbPus1_CheckedChanged);
             // 
-            // radioButton5
+            // rbPus2
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton5.Location = new System.Drawing.Point(140, 3);
-            this.radioButton5.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(29, 16);
-            this.radioButton5.TabIndex = 14;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "2";
-            this.radioButton5.UseVisualStyleBackColor = false;
+            this.rbPus2.AutoSize = true;
+            this.rbPus2.BackColor = System.Drawing.Color.Transparent;
+            this.rbPus2.Location = new System.Drawing.Point(158, 3);
+            this.rbPus2.Margin = new System.Windows.Forms.Padding(5);
+            this.rbPus2.Name = "rbPus2";
+            this.rbPus2.Size = new System.Drawing.Size(29, 16);
+            this.rbPus2.TabIndex = 14;
+            this.rbPus2.TabStop = true;
+            this.rbPus2.Text = "2";
+            this.rbPus2.UseVisualStyleBackColor = false;
+            this.rbPus2.CheckedChanged += new System.EventHandler(this.RbPus2_CheckedChanged);
             // 
             // labelX10
             // 
@@ -762,25 +802,46 @@
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX10.Location = new System.Drawing.Point(16, 2);
+            this.labelX10.Location = new System.Drawing.Point(34, 2);
             this.labelX10.Name = "labelX10";
             this.labelX10.SingleLineColor = System.Drawing.Color.Transparent;
             this.labelX10.Size = new System.Drawing.Size(38, 16);
             this.labelX10.TabIndex = 13;
             this.labelX10.Text = "Qos:";
             // 
-            // radioButton6
+            // rbPus0
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton6.Location = new System.Drawing.Point(62, 2);
-            this.radioButton6.Margin = new System.Windows.Forms.Padding(5);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(29, 16);
-            this.radioButton6.TabIndex = 12;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "0";
-            this.radioButton6.UseVisualStyleBackColor = false;
+            this.rbPus0.AutoSize = true;
+            this.rbPus0.BackColor = System.Drawing.Color.Transparent;
+            this.rbPus0.Location = new System.Drawing.Point(80, 2);
+            this.rbPus0.Margin = new System.Windows.Forms.Padding(5);
+            this.rbPus0.Name = "rbPus0";
+            this.rbPus0.Size = new System.Drawing.Size(29, 16);
+            this.rbPus0.TabIndex = 12;
+            this.rbPus0.TabStop = true;
+            this.rbPus0.Text = "0";
+            this.rbPus0.UseVisualStyleBackColor = false;
+            this.rbPus0.CheckedChanged += new System.EventHandler(this.RbPus0_CheckedChanged);
+            // 
+            // btnSendFile
+            // 
+            this.btnSendFile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSendFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSendFile.BackColor = System.Drawing.Color.Transparent;
+            this.btnSendFile.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
+            this.btnSendFile.FocusCuesEnabled = false;
+            this.btnSendFile.Font = new System.Drawing.Font("黑体", 9F);
+            this.btnSendFile.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+            this.btnSendFile.HoverImage = ((System.Drawing.Image)(resources.GetObject("btnSendFile.HoverImage")));
+            this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
+            this.btnSendFile.Location = new System.Drawing.Point(6, -1);
+            this.btnSendFile.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSendFile.Name = "btnSendFile";
+            this.btnSendFile.Size = new System.Drawing.Size(24, 20);
+            this.btnSendFile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSendFile.TabIndex = 68;
+            this.btnSendFile.Tooltip = "发送文件";
+            this.btnSendFile.Click += new System.EventHandler(this.BtnSendFile_Click);
             // 
             // Form1
             // 
@@ -803,6 +864,7 @@
             this.panel10.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -819,52 +881,55 @@
 
         private DevComponents.DotNetBar.StyleManager styleManager1;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
-        private DevComponents.DotNetBar.ButtonX buttonX2;
+        private DevComponents.DotNetBar.ButtonX btnConnet;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevComponents.DotNetBar.ButtonX btnRefresh;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX7;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtClientID;
         private DevComponents.DotNetBar.LabelX labelX7;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX4;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtAlive;
         private DevComponents.DotNetBar.LabelX labelX4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
+        private System.Windows.Forms.CheckBox cbClean;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtPort;
         private DevComponents.DotNetBar.LabelX labelX3;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtIP;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtConnetName;
         private DevComponents.DotNetBar.LabelX labelX2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX5;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtPassword;
         private DevComponents.DotNetBar.LabelX labelX5;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX6;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtUserName;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX8;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX8;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSubTopic;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbSub1;
+        private DevComponents.DotNetBar.ButtonX btnSubscribe;
+        private System.Windows.Forms.RadioButton rbSub2;
         private DevComponents.DotNetBar.LabelX labelX9;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbSub0;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
-        private DevComponents.DotNetBar.Controls.RichTextBoxEx richTextBoxEx1;
+        private DevComponents.DotNetBar.Controls.RichTextBoxEx rtbPush;
         private System.Windows.Forms.Panel panel4;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX9;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtPusTopic;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
-        private DevComponents.DotNetBar.ButtonX buttonX3;
+        private DevComponents.DotNetBar.ButtonX btnSend;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton rbPus1;
+        private System.Windows.Forms.RadioButton rbPus2;
         private DevComponents.DotNetBar.LabelX labelX10;
-        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton rbPus0;
         private System.Windows.Forms.Panel panel10;
         private DevComponents.DotNetBar.Controls.TokenEditor tokenEditor1;
-        private DevComponents.DotNetBar.ListBoxAdv listBoxLog;
+        private DevComponents.DotNetBar.Controls.RichTextBoxEx rtbRcv;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 清空ToolStripMenuItem;
+        private DevComponents.DotNetBar.ButtonX btnSendFile;
     }
 }
 
