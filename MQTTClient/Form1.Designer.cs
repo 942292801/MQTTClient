@@ -76,11 +76,12 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.txtPusTopic = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cbRetain = new System.Windows.Forms.CheckBox();
+            this.btnSendFile = new DevComponents.DotNetBar.ButtonX();
             this.rbPus1 = new System.Windows.Forms.RadioButton();
             this.rbPus2 = new System.Windows.Forms.RadioButton();
             this.labelX10 = new DevComponents.DotNetBar.LabelX();
             this.rbPus0 = new System.Windows.Forms.RadioButton();
-            this.btnSendFile = new DevComponents.DotNetBar.ButtonX();
             this.expandablePanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -732,7 +733,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(438, 21);
+            this.panel9.Size = new System.Drawing.Size(383, 21);
             this.panel9.TabIndex = 1;
             // 
             // txtPusTopic
@@ -749,22 +750,55 @@
             this.txtPusTopic.Location = new System.Drawing.Point(0, 0);
             this.txtPusTopic.Name = "txtPusTopic";
             this.txtPusTopic.PreventEnterBeep = true;
-            this.txtPusTopic.Size = new System.Drawing.Size(438, 21);
+            this.txtPusTopic.Size = new System.Drawing.Size(383, 21);
             this.txtPusTopic.TabIndex = 0;
             this.txtPusTopic.Text = "Topictest/";
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.cbRetain);
             this.panel8.Controls.Add(this.btnSendFile);
             this.panel8.Controls.Add(this.rbPus1);
             this.panel8.Controls.Add(this.rbPus2);
             this.panel8.Controls.Add(this.labelX10);
             this.panel8.Controls.Add(this.rbPus0);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(438, 0);
+            this.panel8.Location = new System.Drawing.Point(383, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(200, 21);
+            this.panel8.Size = new System.Drawing.Size(255, 21);
             this.panel8.TabIndex = 0;
+            // 
+            // cbRetain
+            // 
+            this.cbRetain.AutoSize = true;
+            this.cbRetain.BackColor = System.Drawing.Color.Transparent;
+            this.cbRetain.Location = new System.Drawing.Point(194, 3);
+            this.cbRetain.Name = "cbRetain";
+            this.cbRetain.Size = new System.Drawing.Size(60, 16);
+            this.cbRetain.TabIndex = 69;
+            this.cbRetain.Text = "Retain";
+            this.cbRetain.UseVisualStyleBackColor = false;
+            this.cbRetain.CheckedChanged += new System.EventHandler(this.CbRetain_CheckedChanged);
+            // 
+            // btnSendFile
+            // 
+            this.btnSendFile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSendFile.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSendFile.BackColor = System.Drawing.Color.Transparent;
+            this.btnSendFile.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
+            this.btnSendFile.FocusCuesEnabled = false;
+            this.btnSendFile.Font = new System.Drawing.Font("黑体", 9F);
+            this.btnSendFile.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+            this.btnSendFile.HoverImage = ((System.Drawing.Image)(resources.GetObject("btnSendFile.HoverImage")));
+            this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
+            this.btnSendFile.Location = new System.Drawing.Point(6, -1);
+            this.btnSendFile.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSendFile.Name = "btnSendFile";
+            this.btnSendFile.Size = new System.Drawing.Size(24, 20);
+            this.btnSendFile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSendFile.TabIndex = 68;
+            this.btnSendFile.Tooltip = "发送文件";
+            this.btnSendFile.Click += new System.EventHandler(this.BtnSendFile_Click);
             // 
             // rbPus1
             // 
@@ -822,26 +856,6 @@
             this.rbPus0.Text = "0";
             this.rbPus0.UseVisualStyleBackColor = false;
             this.rbPus0.CheckedChanged += new System.EventHandler(this.RbPus0_CheckedChanged);
-            // 
-            // btnSendFile
-            // 
-            this.btnSendFile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSendFile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSendFile.BackColor = System.Drawing.Color.Transparent;
-            this.btnSendFile.ColorTable = DevComponents.DotNetBar.eButtonColor.Blue;
-            this.btnSendFile.FocusCuesEnabled = false;
-            this.btnSendFile.Font = new System.Drawing.Font("黑体", 9F);
-            this.btnSendFile.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.btnSendFile.HoverImage = ((System.Drawing.Image)(resources.GetObject("btnSendFile.HoverImage")));
-            this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
-            this.btnSendFile.Location = new System.Drawing.Point(6, -1);
-            this.btnSendFile.Margin = new System.Windows.Forms.Padding(6);
-            this.btnSendFile.Name = "btnSendFile";
-            this.btnSendFile.Size = new System.Drawing.Size(24, 20);
-            this.btnSendFile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSendFile.TabIndex = 68;
-            this.btnSendFile.Tooltip = "发送文件";
-            this.btnSendFile.Click += new System.EventHandler(this.BtnSendFile_Click);
             // 
             // Form1
             // 
@@ -930,6 +944,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 清空ToolStripMenuItem;
         private DevComponents.DotNetBar.ButtonX btnSendFile;
+        private System.Windows.Forms.CheckBox cbRetain;
     }
 }
 

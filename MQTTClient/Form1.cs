@@ -66,9 +66,12 @@ namespace MQTTClient
 
         public static int sendQos =0;
 
+        public static string xmlPrivateKeys = "";
+        public static string xmlPublicKeys = "";
+
         public event Action<string> receviceDelegate;
         public event Action<bool> isConnectDelegate;
-
+        //public event Func<bool> SaveFileDelegate;
         #endregion
 
         private void Form1_Load(object sender, EventArgs e)
@@ -76,8 +79,23 @@ namespace MQTTClient
             tokenEditor1.EditTextBox.KeyPress += EditTextBox_KeyPress;
             receviceDelegate = new Action<string>(showMsg);
             isConnectDelegate = new Action<bool>(Form1_isConnectDelegete);
+            //SaveFileDelegate = new Func<bool>(Form1_SaveFileDelegate);
             Ini();
             
+        }
+
+        private bool Form1_SaveFileDelegate()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "请选择保存路径";
+            //保存对话框是否记忆上次打开的目录 
+            sfd.RestoreDirectory = true;
+            //点了保存按钮进入 
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void Form1_isConnectDelegete(bool isConnect)
@@ -85,6 +103,9 @@ namespace MQTTClient
             if(isConnect)
             {
                 btnConnet.Text = "DisConnect";
+                //推送上线状态
+                Publish("status","onLine",0,true);
+
             }
             else
             {
@@ -120,8 +141,13 @@ namespace MQTTClient
 
             //订阅主题 ;隔开
             AddSubTpoic(Tools.GetAppConfig("SubQos"));
-           
-
+            //产生公钥和私钥
+            /* RSAhelper rSAhelper = new RSAhelper();
+             rSAhelper.RSAKey(out xmlPrivateKeys, out xmlPublicKeys);
+             Tools.UpdateAppConfig("xmlPrivateKeys", xmlPrivateKeys);
+             Tools.UpdateAppConfig("xmlPublicKeys", xmlPublicKeys);*/
+            xmlPrivateKeys = Tools.GetAppConfig("xmlPrivateKeys");
+            xmlPublicKeys = Tools.GetAppConfig("xmlPublicKeys");
         }
 
       
@@ -218,6 +244,20 @@ namespace MQTTClient
             sendQos = 2;
         }
 
+        private void CbRetain_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbClean.Checked)
+            {
+                //Tools.UpdateAppConfig("CleanSession", "1");
+                Retained = true;
+            }
+            else
+            {
+                //Tools.UpdateAppConfig("CleanSession", "0");
+                Retained = false;
+            }
+        }
+
         #endregion
 
         #region 信息显示 清除
@@ -284,11 +324,23 @@ namespace MQTTClient
             
         }
 
-
+        private string RcvFileName = "";
+        private long RcvFileLength = 0;
+        private long RcvFileLengthTmp = 0;
+        private int RcvFileBagCount = 0;
+        private int RcvFileBagCountTmp = 0;
+        //private FileStream saveStream = null;
+        [STAThreadAttribute]
         private void start()
         {
             try
             {
+                MqttApplicationMessage mqttApplicationMessage = new MqttApplicationMessage();
+                mqttApplicationMessage.Retain = true;
+                mqttApplicationMessage.Topic = "will";
+                mqttApplicationMessage.Payload = System.Text.Encoding.UTF8.GetBytes("offLine");
+                //mqttApplicationMessage.QualityOfServiceLevel = MqttQualityOfServiceLevel.AtMostOnce;
+
                 var factory = new MqttFactory();
                 mqttClient = factory.CreateMqttClient() as MqttClient;
                 options = new MqttClientOptionsBuilder()
@@ -297,10 +349,11 @@ namespace MQTTClient
                     .WithClientId(txtClientID.Text)
                     .WithCleanSession(isCleanSession)
                     .WithKeepAlivePeriod(TimeSpan.FromSeconds(Convert.ToDouble(txtAlive.Text)))
+                    .WithWillMessage(mqttApplicationMessage)
                     .Build();
 
                 mqttClient.ConnectAsync(options);
-
+                
                 mqttClient.UseConnectedHandler(async ea =>
                 {
                     try
@@ -324,6 +377,7 @@ namespace MQTTClient
                             await mqttClient.SubscribeAsync(listTopic.ToArray());
                         }
                         Invoke(isConnectDelegate, true);
+
 
                     }
                     catch (Exception exp)
@@ -365,17 +419,54 @@ namespace MQTTClient
                         string text = "";
                         if (Topic == "file")
                         {
-                            text = "File Recver:" + ea.ApplicationMessage.Payload[0].ToString();
-                            //Console.WriteLine("File Recver:"+ea.ApplicationMessage.Payload[0].ToString());
-                            //text = Encoding.UTF8.GetString(ea.ApplicationMessage.Payload);
+                            //接收文件
+                            text = Encoding.UTF8.GetString(ea.ApplicationMessage.Payload);
+                            string[] infos = text.Split(',');
+                            if (infos.Length == 3)
+                            {
+                                RcvFileName = infos[0];
+                                RcvFileLength = Convert.ToInt64(infos[1]);
+                                RcvFileLengthTmp = 0;
+                                RcvFileBagCount = Convert.ToInt32(infos[2]);
+                                RcvFileBagCountTmp = 0;
+                                Invoke(receviceDelegate, "RcvFileName:" + infos[0] + "; RcvFileLength: " + infos[1] + "; RcvFileBagCount: " + infos[2]);
+                                //saveStream = new FileStream(Application.StartupPath + "\\FileRcv\\" + RcvFileName, FileMode.OpenOrCreate, FileAccess.Write);
+
+                            }
+                            else
+                            {
+                                /*         byte[] stream = RSAhelper.RsaDecrypt(ea.ApplicationMessage.Payload, xmlPrivateKeys);
+                                         RcvFileLengthTmp = RcvFileLengthTmp + stream.Length;
+                                         RcvFileBagCountTmp++;
+                                         FileStream saveStream = new FileStream(Application.StartupPath + "\\FileRcv\\" + RcvFileName, FileMode.OpenOrCreate, FileAccess.Write);
+                                         saveStream.Position = saveStream.Length;
+                                         saveStream.Write(stream, 0, ea.ApplicationMessage.Payload.Length);
+                                         saveStream.Close();*/
+                                RcvFileLengthTmp = RcvFileLengthTmp + ea.ApplicationMessage.Payload.Length;
+                                RcvFileBagCountTmp++;
+                                FileStream saveStream = new FileStream(Application.StartupPath + "\\FileRcv\\" + RcvFileName, FileMode.OpenOrCreate, FileAccess.Write);
+                                saveStream.Position = saveStream.Length;
+                                saveStream.Write(ea.ApplicationMessage.Payload, 0, ea.ApplicationMessage.Payload.Length);
+                                saveStream.Close();
+                                Console.WriteLine(RcvFileLength.ToString() + "==" + RcvFileLengthTmp.ToString() + "---->Payload:" + ea.ApplicationMessage.Payload.Length.ToString());
+
+                            }
+                           
                         }
                         else
                         {
                             text = Encoding.UTF8.GetString(ea.ApplicationMessage.Payload);
+                            //RSA解密
+                            if (!string.IsNullOrEmpty(xmlPrivateKeys))
+                            {
+                                //text = Encoding.UTF8.GetString(RSAhelper.RsaDecrypt(ea.ApplicationMessage.Payload, xmlPrivateKeys));
+                               
+                            }
+                            string QoS = ea.ApplicationMessage.QualityOfServiceLevel.ToString();
+                            string Retained = ea.ApplicationMessage.Retain.ToString();
+                            Invoke(receviceDelegate, "Topic:" + Topic + "; QoS: " + QoS + "; Retained: " + Retained + ";\r\n" + text);
                         }
-                        string QoS = ea.ApplicationMessage.QualityOfServiceLevel.ToString();
-                        string Retained = ea.ApplicationMessage.Retain.ToString();
-                        Invoke(receviceDelegate, "Topic:" + Topic + "; QoS: " + QoS + "; Retained: " + Retained + ";\r\n" + text);
+                        
                     }
                     catch (Exception exp)
                     {
@@ -451,6 +542,11 @@ namespace MQTTClient
            
         }
 
+        /// <summary>
+        /// 缺主题格式无误
+        /// </summary>
+        /// <param name="Topic"></param>
+        /// <returns></returns>
         private bool regTopic(string Topic)
         {
             if (Topic.Contains("#"))
@@ -533,18 +629,20 @@ namespace MQTTClient
         #endregion
 
         #region 推送
+        
         private void BtnSend_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtPusTopic.Text) || string.IsNullOrEmpty(rtbPush.Text)) return;
+            if (string.IsNullOrEmpty(txtPusTopic.Text)) return;
             if (txtPusTopic.Text.Contains("#"))
             {
                 return;
             }
-            Publish(txtPusTopic.Text,rtbPush.Text);
+            
+            Publish(txtPusTopic.Text, rtbPush.Text, sendQos, Retained);
         }
 
 
-        public static void Publish(string Topic, string Message)
+        public static void Publish(string Topic, string Message,int Qos,bool Retain)
         {
             try
             {
@@ -557,13 +655,15 @@ namespace MQTTClient
                     Console.WriteLine("Publish >>Connected Failed! ");
                     return;
                 }
-
-                Console.WriteLine("Publish >>Topic: " + Topic + "; QoS: " + sendQos + "; Retained: " + Retained + ";");
+                
+                Console.WriteLine("Publish >>Topic: " + Topic + "; QoS: " + Qos + "; Retained: " + Retain + ";");
                 Console.WriteLine("Publish >>Message: " + Message);
                 MqttApplicationMessageBuilder mamb = new MqttApplicationMessageBuilder()
                  .WithTopic(Topic)
-                 .WithPayload(Message).WithRetainFlag(Retained);
-                if (sendQos == 0)
+                  .WithPayload(System.Text.Encoding.UTF8.GetBytes(Message))
+                 //.WithPayload(RSAhelper.RsaEncrypt(System.Text.Encoding.UTF8.GetBytes(Message), xmlPublicKeys))
+                 .WithRetainFlag(Retain);
+                if (Qos == 0)
                 {
                     mamb = mamb.WithAtMostOnceQoS();
                 }
@@ -584,6 +684,8 @@ namespace MQTTClient
             }
         }
 
+
+        
 
         #endregion
 
@@ -620,13 +722,15 @@ namespace MQTTClient
                 {
                     //发送文件前，将文件名和长度发过去
                     long fileLength = new FileInfo(op.FileName).Length;
-                    string totalMsg = string.Format("{0}-{1}", Path.GetFileNameWithoutExtension(op.FileName), fileLength);
+                    //文件名称 文件长度 
+                    string totalMsg = string.Format("{0},{1},{2}", Path.GetFileName(op.FileName), fileLength,Math.Ceiling((double)fileLength/256/1024));
                     //op.FileName
-                    Tools.UpdateAppConfig("FilePath", op.FileName);
+                    Tools.UpdateAppConfig("FilePath", Path.GetDirectoryName(op.FileName) );
                     MqttApplicationMessageBuilder mamb = new MqttApplicationMessageBuilder()
-                    .WithTopic(txtPusTopic.Text)
-                    .WithPayload(totalMsg).WithRetainFlag(Retained).WithExactlyOnceQoS();
-                    //mqttClient.PublishAsync(mamb.Build());
+                    .WithTopic("file").WithRetainFlag(Retained).WithExactlyOnceQoS()
+                    .WithPayload(totalMsg);
+                    //发送文件名称 长度 
+                    mqttClient.PublishAsync(mamb.Build());
 
                     byte[] buffer = new byte[256* 1024];
                     FileStream fs = new FileStream(op.FileName, FileMode.Open, FileAccess.Read);
@@ -636,14 +740,15 @@ namespace MQTTClient
                     while ((readLength = fs.Read(buffer, 0, buffer.Length)) > 0 && sentFileLength < fileLength)
                     {
                         sentFileLength += readLength;
-                        //第一次发送的字节流上加个前缀1
-                        byte[] firstBuffer = new byte[readLength + 1];
-                        //标记1，代表为文件
-                        firstBuffer[0] = (byte)i;
-                        Buffer.BlockCopy(buffer, 0, firstBuffer, 1, readLength);
-                        mamb.WithPayload(firstBuffer);
+                        Console.WriteLine("Send  >>" + readLength.ToString() + "---------->i:"+i.ToString()) ;
+                        //mamb.WithPayload(RSAhelper.RsaEncrypt(buffer.Skip(0).Take(readLength).ToArray(),xmlPublicKeys));
+                        mamb.WithPayload(buffer.Skip(0).Take(readLength).ToArray());
                         mqttClient.PublishAsync(mamb.Build());
+                        //rcr校验
+                        byte[] result = CRC16Helper.CRC16(buffer);
+                        Array.Clear(buffer,0,buffer.Length);
                         i++;
+                        Tools.DelayMilli(200);
                     }
                     fs.Close();
                 }//if
@@ -654,5 +759,7 @@ namespace MQTTClient
 
             }
         }
+
+       
     }
 }
