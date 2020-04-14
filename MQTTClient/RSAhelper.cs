@@ -23,9 +23,15 @@ namespace MQTTClient
         {
             try
             {
+                //产生xml格式
                 System.Security.Cryptography.RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 xmlKeys = rsa.ToXmlString(true);
                 xmlPublicKey = rsa.ToXmlString(false);
+
+                /*RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(1024);
+                xmlPublicKey = Convert.ToBase64String(RSA.ExportCspBlob(false));
+                xmlKeys = Convert.ToBase64String(RSA.ExportCspBlob(true));*/
+
             }
             catch (Exception ex)
             {
@@ -57,7 +63,8 @@ namespace MQTTClient
             using (var rsaProvider = new RSACryptoServiceProvider())
             {
                 var inputBytes = Encoding.UTF8.GetBytes(rawInput);//有含义的字符串转化为字节流
-                rsaProvider.FromXmlString(publicKey);//载入公钥
+                rsaProvider.FromXmlString(publicKey);//载入xml公钥
+                //rsaProvider.ImportCspBlob(Convert.FromBase64String(publicKey));//载入string公钥
                 int bufferSize = (rsaProvider.KeySize / 8) - 11;//单块最大长度
                 var buffer = new byte[bufferSize];
                 using (MemoryStream inputStream = new MemoryStream(inputBytes),
@@ -103,6 +110,7 @@ namespace MQTTClient
             {
                 //var inputBytes = Encoding.UTF8.GetBytes(rawInput);//有含义的字符串转化为字节流
                 rsaProvider.FromXmlString(publicKey);//载入公钥
+                //rsaProvider.ImportCspBlob(Convert.FromBase64String(publicKey));//载入string公钥
                 int bufferSize = (rsaProvider.KeySize / 8) - 11;//单块最大长度
                 var buffer = new byte[bufferSize];
                 using (MemoryStream inputStream = new MemoryStream(rawInput),
@@ -148,6 +156,7 @@ namespace MQTTClient
                 string Result;
                 System.Security.Cryptography.RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(xmlPublicKey);
+                //rsa.ImportCspBlob(Convert.FromBase64String(xmlPublicKey));//载入string公钥
                 PlainTextBArray = (new UnicodeEncoding()).GetBytes(encryptString);
                 CypherTextBArray = rsa.Encrypt(PlainTextBArray, false);
                 Result = Convert.ToBase64String(CypherTextBArray);
@@ -172,6 +181,7 @@ namespace MQTTClient
                 string Result;
                 System.Security.Cryptography.RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(xmlPublicKey);
+                //rsa.ImportCspBlob(Convert.FromBase64String(xmlPublicKey));//载入string公钥
                 CypherTextBArray = rsa.Encrypt(EncryptString, false);
                 Result = Convert.ToBase64String(CypherTextBArray);
                 return Result;
@@ -207,6 +217,7 @@ namespace MQTTClient
             {
                 var inputBytes = Convert.FromBase64String(encryptedInput);
                 rsaProvider.FromXmlString(privateKey);
+                //rsaProvider.ImportCspBlob(Convert.FromBase64String(privateKey));//载入string公钥
                 int bufferSize = rsaProvider.KeySize / 8;
                 var buffer = new byte[bufferSize];
                 using (MemoryStream inputStream = new MemoryStream(inputBytes),
@@ -250,8 +261,9 @@ namespace MQTTClient
 
             using (var rsaProvider = new RSACryptoServiceProvider())
             {
-                
+
                 rsaProvider.FromXmlString(privateKey);
+                //rsaProvider.ImportCspBlob(Convert.FromBase64String(privateKey));//载入string公钥
                 int bufferSize = rsaProvider.KeySize / 8;
                 var buffer = new byte[bufferSize];
                 using (MemoryStream inputStream = new MemoryStream(encryptedInput),
@@ -290,6 +302,7 @@ namespace MQTTClient
                 string Result;
                 System.Security.Cryptography.RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(xmlPrivateKey);
+                //rsa.ImportCspBlob(Convert.FromBase64String(xmlPrivateKey));//载入string公钥
                 PlainTextBArray = Convert.FromBase64String(decryptString);
                 DypherTextBArray = rsa.Decrypt(PlainTextBArray, false);
                 Result = (new UnicodeEncoding()).GetString(DypherTextBArray);
@@ -314,6 +327,7 @@ namespace MQTTClient
                 string Result;
                 System.Security.Cryptography.RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(xmlPrivateKey);
+                //rsa.ImportCspBlob(Convert.FromBase64String(xmlPrivateKey));//载入string公钥
                 DypherTextBArray = rsa.Decrypt(DecryptString, false);
                 Result = (new UnicodeEncoding()).GetString(DypherTextBArray);
                 return Result;
@@ -437,8 +451,8 @@ namespace MQTTClient
             try
             {
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-
-                RSA.FromXmlString(strKeyPrivate);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPrivate));//载入钥
+                //RSA.FromXmlString(strKeyPrivate);
                 System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
                 //设置签名的算法为MD5 
                 RSAFormatter.SetHashAlgorithm("MD5");
@@ -465,7 +479,8 @@ namespace MQTTClient
             {
                 byte[] EncryptedSignatureData;
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPrivate);
+                //RSA.FromXmlString(strKeyPrivate);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPrivate));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
                 //设置签名的算法为MD5 
                 RSAFormatter.SetHashAlgorithm("MD5");
@@ -495,8 +510,8 @@ namespace MQTTClient
 
                 HashbyteSignature = Convert.FromBase64String(strHashbyteSignature);
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-
-                RSA.FromXmlString(strKeyPrivate);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPrivate));//载入钥
+                //RSA.FromXmlString(strKeyPrivate);
                 System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
                 //设置签名的算法为MD5 
                 RSAFormatter.SetHashAlgorithm("MD5");
@@ -526,7 +541,8 @@ namespace MQTTClient
                 byte[] EncryptedSignatureData;
                 HashbyteSignature = Convert.FromBase64String(strHashbyteSignature);
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPrivate);
+                //RSA.FromXmlString(strKeyPrivate);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPrivate));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureFormatter RSAFormatter = new System.Security.Cryptography.RSAPKCS1SignatureFormatter(RSA);
                 //设置签名的算法为MD5 
                 RSAFormatter.SetHashAlgorithm("MD5");
@@ -555,7 +571,8 @@ namespace MQTTClient
             try
             {
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPublic);
+                //RSA.FromXmlString(strKeyPublic);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPublic));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
                 //指定解密的时候HASH算法为MD5 
                 RSADeformatter.SetHashAlgorithm("MD5");
@@ -587,7 +604,8 @@ namespace MQTTClient
                 byte[] HashbyteDeformatter;
                 HashbyteDeformatter = Convert.FromBase64String(strHashbyteDeformatter);
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPublic);
+                //RSA.FromXmlString(strKeyPublic);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPublic));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
                 //指定解密的时候HASH算法为MD5 
                 RSADeformatter.SetHashAlgorithm("MD5");
@@ -618,7 +636,8 @@ namespace MQTTClient
             {
                 byte[] DeformatterData;
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPublic);
+                //RSA.FromXmlString(strKeyPublic);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPublic));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
                 //指定解密的时候HASH算法为MD5 
                 RSADeformatter.SetHashAlgorithm("MD5");
@@ -652,7 +671,8 @@ namespace MQTTClient
                 byte[] HashbyteDeformatter;
                 HashbyteDeformatter = Convert.FromBase64String(strHashbyteDeformatter);
                 System.Security.Cryptography.RSACryptoServiceProvider RSA = new System.Security.Cryptography.RSACryptoServiceProvider();
-                RSA.FromXmlString(strKeyPublic);
+                //RSA.FromXmlString(strKeyPublic);
+                RSA.ImportCspBlob(Convert.FromBase64String(strKeyPublic));//载入钥
                 System.Security.Cryptography.RSAPKCS1SignatureDeformatter RSADeformatter = new System.Security.Cryptography.RSAPKCS1SignatureDeformatter(RSA);
                 //指定解密的时候HASH算法为MD5 
                 RSADeformatter.SetHashAlgorithm("MD5");

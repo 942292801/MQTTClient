@@ -10,83 +10,66 @@ namespace MQTTClient
     class DoMain
     {
 
-        /// <summary>
-        /// 设备请求
-        /// </summary>
-        [Serializable]
-        public class Request
-        {
-            public string deviceid { get; set; }
-            public string code { get; set; }
-            public string desc { get; set; }
-            public string time { get; set; }
-            public string reqid { get; set; }
-            public string @params { get; set; }
 
-        }
+        #region 获取公钥
 
         /// <summary>
-        /// 回应参数
+        /// 公钥信息
         /// </summary>
         [Serializable]
-        public class ResponsePublicKeys
+        public class BaseResult
         {
-            public string deviceid { get; set; }
-            public string code { get; set; }
-            public string desc { get; set; }
-            public string servertime { get; set; }
-            public string reqid { get; set; }
-            public string result { get; set; }
-            public string result_desc { get; set; }
-            public string error_code { get; set; }
-            public string outparam { get; set; }
+            public int status { get; set; }
+            public string message { get; set; }
+            public object data { get; set; }
 
+            public BaseResult(int stu,string msg) {
+                status = stu;
+                message = msg;
+            }
         }
+
+        #endregion
 
         #region 获取公钥
 
 
 
         /// <summary>
-        /// 输出参数 取值
+        /// 公钥信息
         /// </summary>
         [Serializable]
         public class OutParamRSA
         {
-            public string publickey { get; set; }
+            public string serverName { get; set; }
+            public string wpapsk { get; set; }
+            public string publicKey { get; set; }
         }
+
         #endregion
 
-        #region 获取MQTT配置信息
-        /// <summary>
-        /// 请求参数
-        /// </summary>
-        [Serializable]
-        public class ParamsMQTTConfig
-        {
-            public string password { get; set; }
-            public string passtype { get; set; }
-      
 
-        }
+        #region 获取资源
+
+
 
         /// <summary>
-        /// 输出参数
+        /// 公钥信息
         /// </summary>
         [Serializable]
-        public class OutParamMQTTConfig
+        public class ResourceDTO
         {
-            public string mqttserver { get; set; }
-            public string mqttserverport { get; set; }
-            public string loginuser { get; set; }
-            public string loginpassword { get; set; }
-            public string subtopic { get; set; }
-            public string pubtopic { get; set; }
-            public string msgpassword { get; set; }
-            public string msgpasstype { get; set; }
+            public string username { get; set; }
+            public string passwword { get; set; }
+            public string channel { get; set; }
+            public string scWpapsk { get; set; }
+            public string scPassword { get; set; }
+            public string certid { get; set; }
+            public List<string> certids { get; set; }
+    }
 
-        }
         #endregion
+
 
 
     }
